@@ -508,19 +508,16 @@ nav a.active {
   margin-bottom: 0.4rem;
 }
 
-.photo-placeholder {
+.profile-photo {
   width: 100%;
-  max-width: 280px;
-  aspect-ratio: 1;
-  background-color: var(--bg-alt);
-  border: 2px dashed var(--border);
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
+  max-width: 200px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 1.5rem;
+  border-radius: 50% / 40%;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
 }
 
 .contact-card {
