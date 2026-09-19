@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viktors Utbildningar – Excel & Teams för företagare</title>
+  <meta name="description" content="Praktiska onlinekurser i Excel och Teams för småföretagare. Max 10 deltagare per kurs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">Viktors <span>Utbildningar</span></a>
+    <nav>
+      <a href="index.html" class="active">Hem</a>
+      <a href="om.html">Om</a>
+      <a href="faq.html">FAQ</a>
+      <a href="kontakt.html">Kontakt</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Byt tema">🌙</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Praktiska kurser som <span>sparar tid</span> i din vardag</h1>
+  <p>Lär dig Excel och Teams på ett enkelt sätt – skräddarsytt för småföretagare. Korta, konkreta och med fokus på det du faktiskt behöver.</p>
+</section>
+
+<div class="section">
+  <div class="info-banner">
+    <span>💻 <strong>Alla kurser ges online</strong> via Teams</span>
+    <span>👥 <strong>Max 10 deltagare</strong> per tillfälle</span>
+    <span>⏱️ <strong>3 timmar</strong> per kurs (inkl. paus & frågestund)</span>
+    <span>💰 <strong>800 kr</strong> per kurs</span>
+  </div>
+</div>
+
+<!-- ===== EXCEL ===== -->
+<section class="section">
+  <h2 class="section-title">Excel för företagare</h2>
+  <p class="section-subtitle">Från grunderna till avancerade projekt – bygg upp din Excel-kompetens steg för steg.</p>
+
+  <div class="course-grid">
+
+    <!-- Excel Grundnivå — ÖPPEN -->
+    <div class="course-card">
+      <span class="course-badge badge-open">Öppen för bokning</span>
+      <h3>Excel – Grundnivå</h3>
+      <p class="course-desc">För dig som vill komma igång med Excel och slippa manuellt arbete. Vi går igenom allt från grunderna till formler, filtrering och tydlig struktur.</p>
+      <div class="course-meta">
+        <span>⏱️ 3 timmar</span>
+        <span>👥 Max 10</span>
+        <span>💰 800 kr</span>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+        <span id="spotsLeft">10 platser kvar</span>
+      </p>
+      <div class="course-actions">
+        <button class="btn btn-primary" onclick="openBooking('Excel – Grundnivå')">Boka nu</button>
+        <button class="btn btn-secondary" onclick="toggleDetails(this)">Mer info</button>
+      </div>
+
+      <div class="course-details">
+        <div class="course-details-inner">
+          <h4>Mål med kursen</h4>
+          <p>Några av målen med kursen är att deltagarna ska kunna:</p>
+          <ul>
+            <li>skapa, spara och formatera en enkel affärstabell</li>
+            <li>använda grundläggande formler och funktioner för affärsberäkningar</li>
+            <li>sortera och filtrera data för att snabbt hitta viktig information</li>
+            <li>omvandla rådata till ett enkelt diagram</li>
+            <li>färgkoda och strukturera ett dokument så att det blir tydligare</li>
+          </ul>
+
+          <h4>Kursinnehåll</h4>
+          <ul>
+            <li>Introduktion och upplägg</li>
+            <li>Grunderna: gränssnitt och datainmatning</li>
+            <li>Formatering och läsbarhet</li>
+            <li>Formler och kärnfunktioner</li>
+            <li>Paus / frågestund</li>
+            <li>Sortering, filtrering och diagram</li>
+            <li>Färgkodning och tydlig struktur</li>
+            <li>Avslutning och frågestund</li>
+          </ul>
+
+          <h4>Praktisk information</h4>
+          <p>Kursen ges online via Teams och är 3 timmar lång, inklusive en kortare paus och ett avslutande frågestund. Max 10 deltagare per tillfälle för att alla ska få plats att vara aktiva.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Excel Fortsättning — Coming soon -->
+    <div class="course-card coming-soon">
+      <span class="course-badge badge-soon">Kommer snart</span>
+      <h3>Excel – Fortsättningskurs</h3>
+      <p class="course-desc">Bygg vidare på grunderna med pivot-tabeller, fler funktioner och smartare arbetsflöden.</p>
+      <div class="course-meta">
+        <span>⏱️ 3 timmar</span>
+        <span>👥 Max 10</span>
+        <span>💰 800 kr</span>
+      </div>
+      <div class="course-actions">
+        <button class="btn btn-disabled" disabled>Boka nu</button>
+        <button class="btn btn-disabled" disabled>Mer info</button>
+      </div>
+    </div>
+
+    <!-- Excel Avancerad — Coming soon -->
+    <div class="course-card coming-soon">
+      <span class="course-badge badge-soon">Kommer snart</span>
+      <h3>Excel – Avancerad nivå</h3>
+      <p class="course-desc">För dig som redan behärskar grunderna och vill automatisera och analysera på en högre nivå.</p>
+      <div class="course-meta">
+        <span>⏱️ 3 timmar</span>
+        <span>👥 Max 10</span>
+        <span>💰 800 kr</span>
+      </div>
+      <div class="course-actions">
+        <button class="btn btn-disabled" disabled>Boka nu</button>
+        <button class="btn btn-disabled" disabled>Mer info</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== TEAMS ===== -->
+<section class="section">
+  <h2 class="section-title">Teams – kvalitativ kommunikation</h2>
+  <p class="section-subtitle">Lär dig använda Teams på ett sätt som gör möten och kommunikation tydligare och mer effektiv.</p>
+
+  <div class="course-grid">
+
+    <!-- Teams Grund — Coming soon -->
+    <div class="course-card coming-soon">
+      <span class="course-badge badge-soon">Kommer snart</span>
+      <h3>Teams – Grundnivå</h3>
+      <p class="course-desc">Grunderna i Teams med fokus på tydlig och kvalitativ kommunikation i möten och chattar.</p>
+      <div class="course-meta">
+        <span>⏱️ 3 timmar</span>
+        <span>👥 Max 10</span>
+        <span>💰 800 kr</span>
+      </div>
+      <div class="course-actions">
+        <button class="btn btn-disabled" disabled>Boka nu</button>
+        <button class="btn btn-disabled" disabled>Mer info</button>
+      </div>
+    </div>
+
+    <!-- Teams Fortsättning — Coming soon -->
+    <div class="course-card coming-soon">
+      <span class="course-badge badge-soon">Kommer snart</span>
+      <h3>Teams – Fortsättningskurs</h3>
+      <p class="course-desc">Fördjupa dig i mötesstruktur, samarbetsytor och verktyg som lyfter din kommunikation.</p>
+      <div class="course-meta">
+        <span>⏱️ 3 timmar</span>
+        <span>👥 Max 10</span>
+        <span>💰 800 kr</span>
+      </div>
+      <div class="course-actions">
+        <button class="btn btn-disabled" disabled>Boka nu</button>
+        <button class="btn btn-disabled" disabled>Mer info</button>
+      </div>
+    </div>
+
+    <!-- Teams Avancerad — Coming soon -->
+    <div class="course-card coming-soon">
+      <span class="course-badge badge-soon">Kommer snart</span>
+      <h3>Teams – Avancerad nivå</h3>
+      <p class="course-desc">Avancerade tekniker för dig som vill leda möten och kommunikation på expertnivå.</p>
+      <div class="course-meta">
+        <span>⏱️ 3 timmar</span>
+        <span>👥 Max 10</span>
+        <span>💰 800 kr</span>
+      </div>
+      <div class="course-actions">
+        <button class="btn btn-disabled" disabled>Boka nu</button>
+        <button class="btn btn-disabled" disabled>Mer info</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== BOKNINGSMODAL ===== -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <h2>Boka kurs</h2>
+    <p>Du bokar: <strong id="bookingCourseName">Excel – Grundnivå</strong></p>
+
+    <form onsubmit="submitBooking(event)">
+      <div class="form-group">
+        <label for="namn">Namn</label>
+        <input type="text" id="namn" name="namn" required>
+      </div>
+      <div class="form-group">
+        <label for="epost">E-post</label>
+        <input type="email" id="epost" name="epost" required>
+      </div>
+      <div class="form-group">
+        <label for="foretag">Företag</label>
+        <input type="text" id="foretag" name="foretag" required>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" onclick="closeBooking()">Avbryt</button>
+        <button type="submit" class="btn btn-primary">Skicka bokning</button>
+      </div>
+
+      <div class="form-message" id="formMessage"></div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Viktors Utbildningar · <a href="kontakt.html">Kontakta oss</a></p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

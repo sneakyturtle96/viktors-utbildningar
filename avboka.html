@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avboka kurs – Viktors Utbildningar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">Viktors <span>Utbildningar</span></a>
+    <nav>
+      <a href="index.html">Hem</a>
+      <a href="om.html">Om</a>
+      <a href="faq.html">FAQ</a>
+      <a href="kontakt.html">Kontakt</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Byt tema">🌙</button>
+    </nav>
+  </div>
+</header>
+
+<main class="page-content">
+  <h1>Avboka kurs</h1>
+  <p>Här kan du avboka din plats. Avbokning ska ske senast <strong>24 timmar innan kurstillfället</strong>.</p>
+
+  <form id="cancelForm" onsubmit="submitCancellation(event)" style="margin-top: 2rem;">
+
+    <div class="form-group">
+      <label for="cancelKurs">Vilken kurs vill du avboka?</label>
+      <select id="cancelKurs" name="kurs" required
+        style="width: 100%; padding: 0.7rem 0.9rem; border: 1px solid var(--border); border-radius: 10px; font-size: 0.95rem; font-family: inherit; background-color: var(--bg-alt); color: var(--text);">
+        <option value="">Välj kurs...</option>
+        <option value="Excel – Grundnivå">Excel – Grundnivå</option>
+        <!-- Fler kurser läggs till här när de blir tillgängliga -->
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="cancelEpost">Din e-post (samma som vid bokning)</label>
+      <input type="email" id="cancelEpost" name="epost" required>
+    </div>
+
+    <div class="form-group" style="display: flex; align-items: flex-start; gap: 0.6rem; margin-top: 1.25rem;">
+      <input type="checkbox" id="cancelConfirm" required
+        style="width: auto; margin-top: 0.3rem;">
+      <label for="cancelConfirm" style="font-weight: 400; font-size: 0.9rem; line-height: 1.5;">
+        Jag bekräftar att jag vill avboka min plats. Jag är medveten om att avbokning ska ske senast 24 timmar innan kurstillfället.
+      </label>
+    </div>
+
+    <div class="modal-actions" style="margin-top: 1.5rem;">
+      <a href="index.html" class="btn btn-secondary" style="text-decoration: none;">Tillbaka</a>
+      <button type="submit" class="btn btn-primary">Avboka</button>
+    </div>
+
+    <div class="form-message" id="cancelMessage"></div>
+  </form>
+</main>
+
+<footer>
+  <p>&copy; 2025 Viktors Utbildningar · <a href="kontakt.html">Kontakta oss</a></p>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+  // Förifyll kurs och e-post om de finns i URL:en
+  (function prefillFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const epost = params.get('epost');
+    const kurs = params.get('kurs');
+
+    if (epost) document.getElementById('cancelEpost').value = epost;
+    if (kurs) {
+      const select = document.getElementById('cancelKurs');
+      for (const opt of select.options) {
+        if (opt.value === kurs) {
+          select.value = kurs;
+          break;
+        }
+      }
+    }
+  })();
+</script>
+</body>
+</html>
