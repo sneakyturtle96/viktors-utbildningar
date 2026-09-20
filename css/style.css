@@ -216,6 +216,48 @@ nav a.active {
   margin-bottom: 2rem;
 }
 
+/* ===== INFO-RUTOR ===== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-box {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.info-box:hover {
+  border-color: var(--accent);
+}
+
+.info-box > span:first-child {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.info-box strong {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.info-detail {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
 /* ===== KURSBOXAR ===== */
 .course-grid {
   display: grid;
@@ -494,30 +536,6 @@ nav a.active {
   display: block;
 }
 
-/* ===== INFO-BANNER ===== */
-.info-banner {
-  background-color: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.info-banner strong {
-  color: var(--text);
-}
-
-.info-banner span {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
 /* ===== INNEHÅLLSSIDOR ===== */
 .page-content {
   max-width: 760px;
@@ -634,6 +652,21 @@ footer a:hover {
 }
 
 /* ===== RESPONSIVT ===== */
+
+/* Mellanstora skärmar: 2 rutor per rad */
+@media (max-width: 900px) {
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Små skärmar: 1 ruta per rad */
+@media (max-width: 520px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 640px) {
   .header-inner {
     padding: 0.85rem 1rem;
