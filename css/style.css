@@ -684,7 +684,7 @@ footer a:hover {
 }
 
 .about-photo {
-  width: clamp(60px, 5vw, 100px);
+  width: clamp(80px, 10vw, 140px);
   flex-shrink: 0;
   aspect-ratio: 2 / 3;
   object-fit: cover;
@@ -699,16 +699,14 @@ footer a:hover {
   min-width: 0;
 }
 
-/* På smala skärmar: bilden ovanför texten, centrerad */
+/* På smala skärmar: bilden stannar till vänster men blir mindre */
 @media (max-width: 640px) {
   .about-layout {
-    flex-direction: column;
-    align-items: center;
+    gap: 1rem;
   }
 
   .about-photo {
-    width: 160px;
-    margin-bottom: 1rem;
+    width: clamp(60px, 18vw, 90px);
   }
 
   .page-title-with-logo {
