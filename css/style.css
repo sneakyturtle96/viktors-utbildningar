@@ -659,7 +659,7 @@ footer a:hover {
 }
 
 .title-logo {
-  height: clamp(48px, 5vw, 80px);
+  height: clamp(60px, 7vw, 100px);
   width: auto;
   display: block;
 }
@@ -684,7 +684,7 @@ footer a:hover {
 }
 
 .about-photo {
-  width: clamp(100px, 12vw, 160px);
+  width: clamp(60px, 8vw, 100px);
   flex-shrink: 0;
   aspect-ratio: 2 / 3;
   object-fit: cover;
