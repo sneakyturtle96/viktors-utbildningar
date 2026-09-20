@@ -684,7 +684,7 @@ footer a:hover {
 }
 
 .about-photo {
-  width: clamp(40px, 5vw, 50px);
+  width: clamp(60px, 5vw, 100px);
   flex-shrink: 0;
   aspect-ratio: 2 / 3;
   object-fit: cover;
