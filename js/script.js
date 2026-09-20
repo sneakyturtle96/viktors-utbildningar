@@ -48,6 +48,13 @@ function openBooking(courseName) {
   title.textContent = courseName;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+
+  // Rensa platsinfo när modalen öppnas
+  const spotsInfo = document.getElementById('spotsLeftForDate');
+  if (spotsInfo) spotsInfo.textContent = '';
+
+  const datumEl = document.getElementById('datum');
+  if (datumEl) datumEl.value = '';
 }
 
 function closeBooking() {
@@ -58,20 +65,37 @@ function closeBooking() {
   document.body.style.overflow = '';
 }
 
-// Stäng modal vid klick utanför
 document.addEventListener('click', (e) => {
   if (e.target.classList && e.target.classList.contains('modal-overlay')) {
     closeBooking();
   }
 });
 
-// Stäng med Escape
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeBooking();
 });
 
 // ===== KONFIGURATION =====
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztX9oslpvj0grIKA9ujXvazJYI39T1EsZYR0F6g0MjS7XDWTMivP2GcWEcd8OpQsHZCg/exec';
+
+// ===== DATUM-DROPDOWN =====
+document.addEventListener('change', (e) => {
+  if (e.target.id === 'datum') {
+    const selected = e.target.options[e.target.selectedIndex];
+    const kurs = document.getElementById('bookingCourseName').textContent;
+    const datum = selected.value;
+
+    const spotsInfo = document.getElementById('spotsLeftForDate');
+
+    if (!datum) {
+      if (spotsInfo) spotsInfo.textContent = '';
+      return;
+    }
+
+    if (spotsInfo) spotsInfo.textContent = 'Hämtar platser...';
+    fetchSpotsLeftForDate(kurs, datum);
+  }
+});
 
 // ===== BOKNINGSFORMULÄR =====
 async function submitBooking(event) {
@@ -81,20 +105,28 @@ async function submitBooking(event) {
   const message = document.getElementById('formMessage');
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  const namnEl = document.getElementById('namn');
-  const epostEl = document.getElementById('epost');
-  const foretagEl = document.getElementById('foretag');
+  const datumEl = document.getElementById('datum');
+  const selectedOption = datumEl.options[datumEl.selectedIndex];
+  const datum = datumEl.value.trim();
+  const tid = selectedOption.getAttribute('data-tid') || '';
 
   const data = {
-    namn: namnEl.value.trim(),
-    epost: epostEl.value.trim(),
-    foretag: foretagEl.value.trim(),
-    kurs: document.getElementById('bookingCourseName').textContent
+    namn: document.getElementById('namn').value.trim(),
+    foretag: document.getElementById('foretag').value.trim(),
+    epost: document.getElementById('epost').value.trim(),
+    gatuadress: document.getElementById('gatuadress').value.trim(),
+    postnummer: document.getElementById('postnummer').value.trim(),
+    ort: document.getElementById('ort').value.trim(),
+    kurs: document.getElementById('bookingCourseName').textContent,
+    datum: datum,
+    tid: tid
   };
 
-  // Enkel validering
-  if (!data.namn || !data.epost || !data.foretag) {
-    showMessage(message, 'Fyll i alla fält.', 'error');
+  // Validering
+  if (!data.namn || !data.foretag || !data.epost ||
+      !data.gatuadress || !data.postnummer || !data.ort ||
+      !data.datum || !data.tid) {
+    showMessage(message, 'Fyll i alla fält inklusive datum.', 'error');
     return;
   }
 
@@ -105,9 +137,14 @@ async function submitBooking(event) {
     const params = new URLSearchParams();
     params.append('action', 'boka');
     params.append('namn', data.namn);
-    params.append('epost', data.epost);
     params.append('foretag', data.foretag);
+    params.append('epost', data.epost);
+    params.append('gatuadress', data.gatuadress);
+    params.append('postnummer', data.postnummer);
+    params.append('ort', data.ort);
     params.append('kurs', data.kurs);
+    params.append('datum', data.datum);
+    params.append('tid', data.tid);
 
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
@@ -118,9 +155,6 @@ async function submitBooking(event) {
 
     showMessage(message, 'Tack! Din bokning är mottagen. Du får en bekräftelse via e-post.', 'success');
     form.reset();
-
-    // Hämta aktuellt antal platser kvar (efter en kort fördröjning så kalkylarket hinner uppdateras)
-    setTimeout(() => fetchSpotsLeft(data.kurs), 1500);
 
     setTimeout(() => {
       closeBooking();
@@ -162,7 +196,6 @@ async function submitCancellation(event) {
     params.append('kurs', kurs);
     params.append('epost', epost);
 
-    // Inkludera ID om det finns i URL:en
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     if (id) params.append('id', id);
@@ -197,23 +230,31 @@ function showMessage(el, text, type) {
   el.className = 'form-message ' + type;
 }
 
-// Uppdatera platsräknare på sidan
-function updateSpotsLeft(count) {
-  const el = document.getElementById('spotsLeft');
-  if (el) el.textContent = count + ' platser kvar';
-}
-
-// Hämta aktuellt antal platser kvar från Apps Script
-async function fetchSpotsLeft(kurs) {
+// Hämta platser kvar för ett specifikt datum
+async function fetchSpotsLeftForDate(kurs, datum) {
   try {
-    const url = APPS_SCRIPT_URL + '?kurs=' + encodeURIComponent(kurs);
+    const url = APPS_SCRIPT_URL +
+      '?kurs=' + encodeURIComponent(kurs) +
+      '&datum=' + encodeURIComponent(datum);
     const res = await fetch(url);
     const json = await res.json();
+
+    const spotsInfo = document.getElementById('spotsLeftForDate');
+    if (!spotsInfo) return;
+
     if (json.status === 'ok') {
-      updateSpotsLeft(json.spotsLeft);
+      spotsInfo.textContent = json.spotsLeft + ' platser kvar';
+      if (json.spotsLeft === 0) {
+        spotsInfo.textContent = 'Fullbokat';
+        spotsInfo.classList.add('full');
+      } else {
+        spotsInfo.classList.remove('full');
+      }
     }
   } catch (err) {
     console.error('Kunde inte hämta platser:', err);
+    const spotsInfo = document.getElementById('spotsLeftForDate');
+    if (spotsInfo) spotsInfo.textContent = '';
   }
 }
 
@@ -223,9 +264,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const toggle = document.getElementById('themeToggle');
   if (toggle) toggle.addEventListener('click', toggleTheme);
-
-  // Hämta aktuellt antal platser kvar vid sidladdning
-  if (document.getElementById('spotsLeft')) {
-    fetchSpotsLeft('Excel – Grundnivå');
-  }
 });
