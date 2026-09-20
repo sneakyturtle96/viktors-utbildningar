@@ -75,9 +75,6 @@
         <span>👥 Max 10</span>
         <span>💰 800 kr exkl. moms</span>
       </div>
-      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-        <span id="spotsLeft">10 platser kvar</span>
-      </p>
       <div class="course-actions">
         <button class="btn btn-primary" onclick="openBooking('Excel – Grundnivå')">Boka nu</button>
         <button class="btn btn-secondary" onclick="toggleDetails(this)">Mer info</button>
@@ -214,16 +211,39 @@
 
     <form onsubmit="submitBooking(event)">
       <div class="form-group">
+        <label for="datum">Välj datum</label>
+        <select id="datum" name="datum" required>
+          <option value="">Välj ett tillfälle...</option>
+          <option value="Söndag 1 november" data-tid="14:00 - 17:00">Söndag 1 november 14:00 - 17:00</option>
+          <option value="Söndag 22 november" data-tid="14:00 - 17:00">Söndag 22 november 14:00 - 17:00</option>
+          <option value="Fredag 4 december" data-tid="16:00 - 19:00">Fredag 4 december 16:00 - 19:00</option>
+        </select>
+        <p id="spotsLeftForDate" class="spots-info"></p>
+      </div>
+
+      <div class="form-group">
         <label for="namn">Namn</label>
         <input type="text" id="namn" name="namn" required>
+      </div>
+      <div class="form-group">
+        <label for="foretag">Företag</label>
+        <input type="text" id="foretag" name="foretag" required>
       </div>
       <div class="form-group">
         <label for="epost">E-post</label>
         <input type="email" id="epost" name="epost" required>
       </div>
       <div class="form-group">
-        <label for="foretag">Företag</label>
-        <input type="text" id="foretag" name="foretag" required>
+        <label for="gatuadress">Gatuadress</label>
+        <input type="text" id="gatuadress" name="gatuadress" required>
+      </div>
+      <div class="form-group">
+        <label for="postnummer">Postnummer</label>
+        <input type="text" id="postnummer" name="postnummer" required>
+      </div>
+      <div class="form-group">
+        <label for="ort">Ort</label>
+        <input type="text" id="ort" name="ort" required>
       </div>
 
       <div class="modal-actions">
@@ -233,6 +253,10 @@
 
       <div class="form-message" id="formMessage"></div>
     </form>
+
+    <p class="booking-help">
+      Hittar du ingen tid som passar? Inga problem, <a href="kontakt.html">kontakta mig</a> så hittar vi en lösning.
+    </p>
   </div>
 </div>
 
