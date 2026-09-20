@@ -601,3 +601,57 @@ footer a:hover {
     flex-direction: column;
   }
 }
+/* ===== LOGOTYP ===== */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  will-change: transform, filter;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* Dölj mörkt tema-loggan som standard */
+.logo-dark {
+  display: none;
+}
+
+/* I mörkt tema: visa vit-orange, dölj svart-turkos */
+[data-theme="dark"] .logo-light {
+  display: none;
+}
+
+[data-theme="dark"] .logo-dark {
+  display: block;
+}
+
+/* Hover-effekt: svävar upp och lyser */
+.logo:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+.logo-light:hover {
+  filter: drop-shadow(0 0 12px rgba(20, 184, 166, 0.7));
+}
+
+.logo-dark:hover {
+  filter: drop-shadow(0 0 12px rgba(255, 140, 66, 0.8));
+}
+
+/* Klick-effekt: trycks ner snabbt */
+.logo:active {
+  transform: translateY(0) scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+/* Tangentbordsfokus (tillgänglighet) */
+.logo:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
