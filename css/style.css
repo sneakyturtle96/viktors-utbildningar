@@ -650,7 +650,71 @@ footer a {
 footer a:hover {
   color: var(--accent);
 }
+/* ===== OM-SIDAN ===== */
+.page-title-with-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
+.title-logo {
+  height: clamp(36px, 4vw, 56px);
+  width: auto;
+  display: block;
+}
+
+.title-logo-dark {
+  display: none;
+}
+
+[data-theme="dark"] .title-logo-light {
+  display: none;
+}
+
+[data-theme="dark"] .title-logo-dark {
+  display: block;
+}
+
+/* Layout med bild till vänster, text till höger */
+.about-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.about-photo {
+  width: clamp(140px, 18vw, 220px);
+  flex-shrink: 0;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: 50% / 40%;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+}
+
+.about-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* På smala skärmar: bilden ovanför texten, centrerad */
+@media (max-width: 640px) {
+  .about-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-photo {
+    width: 160px;
+    margin-bottom: 1rem;
+  }
+
+  .page-title-with-logo {
+    gap: 0.6rem;
+  }
+}
 /* ===== RESPONSIVT ===== */
 
 /* Mellanstora skärmar: 2 rutor per rad */
