@@ -84,16 +84,17 @@ document.addEventListener('change', (e) => {
     const selected = e.target.options[e.target.selectedIndex];
     const kurs = document.getElementById('bookingCourseName').textContent;
     const datum = selected.value;
+    const tid = selected.getAttribute('data-tid') || '';
 
     const spotsInfo = document.getElementById('spotsLeftForDate');
 
-    if (!datum) {
+    if (!datum || !tid) {
       if (spotsInfo) spotsInfo.textContent = '';
       return;
     }
 
     if (spotsInfo) spotsInfo.textContent = 'Hämtar platser...';
-    fetchSpotsLeftForDate(kurs, datum);
+    fetchSpotsLeftForDate(kurs, datum, tid);
   }
 });
 
@@ -230,12 +231,13 @@ function showMessage(el, text, type) {
   el.className = 'form-message ' + type;
 }
 
-// Hämta platser kvar för ett specifikt datum
-async function fetchSpotsLeftForDate(kurs, datum) {
+// Hämta platser kvar för ett specifikt tillfälle (datum + tid)
+async function fetchSpotsLeftForDate(kurs, datum, tid) {
   try {
     const url = APPS_SCRIPT_URL +
       '?kurs=' + encodeURIComponent(kurs) +
-      '&datum=' + encodeURIComponent(datum);
+      '&datum=' + encodeURIComponent(datum) +
+      '&tid=' + encodeURIComponent(tid);
     const res = await fetch(url);
     const json = await res.json();
 
@@ -243,11 +245,11 @@ async function fetchSpotsLeftForDate(kurs, datum) {
     if (!spotsInfo) return;
 
     if (json.status === 'ok') {
-      spotsInfo.textContent = json.spotsLeft + ' platser kvar';
       if (json.spotsLeft === 0) {
         spotsInfo.textContent = 'Fullbokat';
         spotsInfo.classList.add('full');
       } else {
+        spotsInfo.textContent = json.spotsLeft + ' platser kvar';
         spotsInfo.classList.remove('full');
       }
     }
