@@ -655,3 +655,8 @@ footer a:hover {
   outline-offset: 4px;
   border-radius: 6px;
 }
+@media (max-width: 640px) {
+  .logo-img {
+    height: 32px;
+  }
+}
