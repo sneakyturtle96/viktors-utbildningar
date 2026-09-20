@@ -89,12 +89,10 @@ header {
   display: block;
 }
 
-/* Dölj mörkt tema-loggan som standard */
 .logo-dark {
   display: none;
 }
 
-/* I mörkt tema: visa vit-orange, dölj svart-turkos */
 [data-theme="dark"] .logo-light {
   display: none;
 }
@@ -103,7 +101,6 @@ header {
   display: block;
 }
 
-/* Hover-effekt: svävar upp och lyser */
 .logo:hover {
   transform: translateY(-3px) scale(1.04);
   text-decoration: none;
@@ -117,13 +114,11 @@ header {
   filter: drop-shadow(0 0 12px rgba(255, 140, 66, 0.8));
 }
 
-/* Klick-effekt: trycks ner snabbt */
 .logo:active {
   transform: translateY(0) scale(0.97);
   transition: transform 0.1s ease;
 }
 
-/* Tangentbordsfokus (tillgänglighet) */
 .logo:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
@@ -510,6 +505,53 @@ nav a.active {
   border-color: var(--accent);
 }
 
+/* ===== DROPDOWN & PLATSINFO ===== */
+.form-group select {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background-color: var(--bg-alt);
+  color: var(--text);
+  transition: border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.spots-info {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 600;
+  min-height: 1.2em;
+}
+
+.spots-info.full {
+  color: #ef4444;
+}
+
+.booking-help {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.booking-help a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .modal-actions {
   display: flex;
   gap: 0.75rem;
@@ -572,7 +614,6 @@ nav a.active {
   margin-bottom: 0.4rem;
 }
 
-/* Centrera rubrik */
 .page-title-center {
   text-align: center;
 }
@@ -632,7 +673,6 @@ nav a.active {
   display: block;
 }
 
-/* Layout: bilden flyter till vänster, texten tar upp full bredd */
 .about-layout {
   display: block;
   margin-bottom: 1.5rem;
@@ -657,7 +697,7 @@ nav a.active {
 }
 
 .about-text {
-  /* Ingen flex längre — texten flödar runt bilden */
+  /* Ingen flex — texten flödar runt bilden */
 }
 
 /* ===== KONTAKTKORT ===== */
@@ -727,63 +767,14 @@ footer a:hover {
   color: var(--accent);
 }
 
-/* ===== DROPDOWN & PLATSINFO ===== */
-.form-group select {
-  width: 100%;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-family: inherit;
-  background-color: var(--bg-alt);
-  color: var(--text);
-  transition: border-color 0.2s ease;
-  cursor: pointer;
-}
-
-.form-group select:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.spots-info {
-  margin-top: 0.5rem;
-  margin-bottom: 0;
-  font-size: 0.85rem;
-  color: var(--accent);
-  font-weight: 600;
-  min-height: 1.2em;
-}
-
-.spots-info.full {
-  color: #ef4444;
-}
-
-/* Textrutan under formuläret */
-.booking-help {
-  margin-top: 1.25rem;
-  margin-bottom: 0;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  text-align: center;
-}
-
-.booking-help a {
-  color: var(--accent);
-  font-weight: 600;
-}
 /* ===== RESPONSIVT ===== */
 
-/* Mellanstora skärmar: 2 rutor per rad */
 @media (max-width: 900px) {
   .info-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Små skärmar: 1 ruta per rad */
 @media (max-width: 520px) {
   .info-grid {
     grid-template-columns: 1fr;
@@ -819,7 +810,6 @@ footer a:hover {
     flex-direction: column;
   }
 
-  /* OM-SIDAN på mobil */
   .about-photo {
     width: clamp(70px, 20vw, 100px);
     margin: 0 1rem 0.75rem 0;
@@ -829,7 +819,6 @@ footer a:hover {
     gap: 0.6rem;
   }
 
-  /* KONTAKT på mobil */
   .contact-card {
     padding: 1rem 1.1rem;
   }
