@@ -572,6 +572,11 @@ nav a.active {
   margin-bottom: 0.4rem;
 }
 
+/* Centrera rubrik */
+.page-title-center {
+  text-align: center;
+}
+
 /* ===== PROFILBILD ===== */
 .profile-photo {
   width: 100%;
@@ -600,15 +605,74 @@ nav a.active {
   margin-bottom: 1.5rem;
 }
 
+/* ===== OM-SIDAN ===== */
+.page-title-with-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.title-logo {
+  height: clamp(60px, 7vw, 100px);
+  width: auto;
+  display: block;
+}
+
+.title-logo-dark {
+  display: none;
+}
+
+[data-theme="dark"] .title-logo-light {
+  display: none;
+}
+
+[data-theme="dark"] .title-logo-dark {
+  display: block;
+}
+
+/* Layout: bilden flyter till vänster, texten tar upp full bredd */
+.about-layout {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.about-layout::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.about-photo {
+  float: left;
+  width: clamp(100px, 14vw, 180px);
+  margin: 0 1.5rem 1rem 0;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: 50% / 40%;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+}
+
+.about-text {
+  /* Ingen flex längre — texten flödar runt bilden */
+}
+
 /* ===== KONTAKTKORT ===== */
+.contact-cards {
+  clear: both;
+  margin-top: 1rem;
+}
+
 .contact-card {
   background-color: var(--bg-alt);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  overflow: hidden;
 }
 
 .contact-card h3 {
@@ -619,14 +683,15 @@ nav a.active {
 
 .contact-card p {
   margin-bottom: 0;
-  font-size: clamp(0.8rem, 2.5vw, 0.95rem);
-  padding-left: 0.25rem;
+  font-size: 0.95rem;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .contact-card a {
-  overflow-wrap: break-word;
   word-break: break-word;
-  hyphens: auto;
+  overflow-wrap: anywhere;
 }
 
 /* ===== FAQ ===== */
@@ -661,72 +726,7 @@ footer a {
 footer a:hover {
   color: var(--accent);
 }
-/* ===== OM-SIDAN ===== */
-.page-title-with-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
 
-.title-logo {
-  height: clamp(60px, 7vw, 100px);
-  width: auto;
-  display: block;
-}
-
-.title-logo-dark {
-  display: none;
-}
-
-[data-theme="dark"] .title-logo-light {
-  display: none;
-}
-
-[data-theme="dark"] .title-logo-dark {
-  display: block;
-}
-
-/* Layout: bilden flyter till vänster, texten tar upp full bredd */
-.about-layout {
-  display: block;
-}
-
-.about-photo {
-  float: left;
-  width: clamp(100px, 14vw, 180px);
-  margin: 0 1.5rem 1rem 0;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
-  display: block;
-  border-radius: 50% / 40%;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
-  mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
-}
-
-.about-text {
-  /* Ingen flex längre — texten flödar runt bilden */
-}
-
-/* Rensa float så att innehållet under påverkas korrekt */
-.about-layout::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* På smala skärmar: mindre bild, mindre marginal */
-@media (max-width: 640px) {
-  .about-photo {
-    width: clamp(70px, 20vw, 100px);
-    margin: 0 1rem 0.75rem 0;
-  }
-
-  .page-title-with-logo {
-    gap: 0.6rem;
-  }
-}
 /* ===== RESPONSIVT ===== */
 
 /* Mellanstora skärmar: 2 rutor per rad */
@@ -770,5 +770,24 @@ footer a:hover {
 
   .course-actions {
     flex-direction: column;
+  }
+
+  /* OM-SIDAN på mobil */
+  .about-photo {
+    width: clamp(70px, 20vw, 100px);
+    margin: 0 1rem 0.75rem 0;
+  }
+
+  .page-title-with-logo {
+    gap: 0.6rem;
+  }
+
+  /* KONTAKT på mobil */
+  .contact-card {
+    padding: 1rem 1.1rem;
+  }
+
+  .contact-card p {
+    font-size: 0.85rem;
   }
 }
