@@ -767,6 +767,79 @@ footer a:hover {
   color: var(--accent);
 }
 
+/* ===== BOKNINGSMODAL — INFO ===== */
+.booking-info {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background-color: var(--bg-alt);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+}
+
+.booking-info p {
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.booking-info ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.booking-info li {
+  padding-left: 1.25rem;
+  position: relative;
+  margin-bottom: 0.4rem;
+  color: var(--text-muted);
+}
+
+.booking-info li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.booking-price {
+  padding: 1rem;
+  background-color: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.booking-price strong {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.price-old {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.booking-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.booking-note:last-child {
+  margin-bottom: 0;
+}
+
+/* Länk-knapp i modal */
+.modal-actions a.btn {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* ===== RESPONSIVT ===== */
 
 @media (max-width: 900px) {
