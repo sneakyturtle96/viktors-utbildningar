@@ -40,15 +40,13 @@ function toggleDetails(btn) {
 }
 
 // ===== BOKNINGSMODAL =====
-function openBooking(courseName) {
+function openBooking() {
   const overlay = document.getElementById('bookingModal');
-  const title = document.getElementById('bookingCourseName');
   if (!overlay) return;
 
-  title.textContent = courseName;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
-
+}
   // Rensa platsinfo när modalen öppnas
   const spotsInfo = document.getElementById('spotsLeftForDate');
   if (spotsInfo) spotsInfo.textContent = '';
