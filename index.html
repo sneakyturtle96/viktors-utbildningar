@@ -47,8 +47,8 @@
     </div>
     <div class="info-box">
       <span>⏱️</span>
-      <strong>3 timmar per kurs</strong>
-      <span class="info-detail">inkl. paus & frågestund</span>
+      <strong>2 tillfällen á 90 min</strong>
+      <span class="info-detail">per kurs</span>
     </div>
     <div class="info-box">
       <span>💰</span>
@@ -71,12 +71,12 @@
       <h3>Excel – Grundnivå</h3>
       <p class="course-desc">För dig som vill komma igång med Excel och slippa manuellt arbete. Vi går igenom allt från grunderna till formler, filtrering och tydlig struktur.</p>
       <div class="course-meta">
-        <span>⏱️ 3 timmar</span>
+        <span>⏱️ 2 tillfällen á 90 min</span>
         <span>👥 Max 10</span>
         <span>💰 800 kr exkl. moms</span>
       </div>
       <div class="course-actions">
-        <button class="btn btn-primary" onclick="openBooking('Excel – Grundnivå')">Boka nu</button>
+        <button class="btn btn-primary" onclick="openBooking()">Boka nu</button>
         <button class="btn btn-secondary" onclick="toggleDetails(this)">Mer info</button>
       </div>
 
@@ -105,7 +105,9 @@
           </ul>
 
           <h4>Praktisk information</h4>
-          <p>Kursen ges online via Teams och är 3 timmar lång, inklusive en kortare paus och ett avslutande frågestund. Max 10 deltagare per tillfälle för att alla ska få plats att vara aktiva.</p>
+          <p>Kursen ges online via Teams och är uppdelad i två tillfällen om 90 minuter vardera. Du måste delta vid båda tillfällena.</p>
+          <p>Max 10 deltagare per tillfälle för att alla ska få plats att vara aktiva.</p>
+          <p>Fakturan ska vara betald senast dagen före tillfälle 2 för att du ska få delta i den andra delen.</p>
         </div>
       </div>
     </div>
@@ -116,7 +118,7 @@
       <h3>Excel – Fortsättningskurs</h3>
       <p class="course-desc">Bygg vidare på grunderna med pivot-tabeller, fler funktioner och smartare arbetsflöden.</p>
       <div class="course-meta">
-        <span>⏱️ 3 timmar</span>
+        <span>⏱️ 2 tillfällen á 90 min</span>
         <span>👥 Max 10</span>
         <span>💰 800 kr exkl. moms</span>
       </div>
@@ -132,7 +134,7 @@
       <h3>Excel – Avancerad nivå</h3>
       <p class="course-desc">För dig som redan behärskar grunderna och vill automatisera och analysera på en högre nivå.</p>
       <div class="course-meta">
-        <span>⏱️ 3 timmar</span>
+        <span>⏱️ 2 tillfällen á 90 min</span>
         <span>👥 Max 10</span>
         <span>💰 800 kr exkl. moms</span>
       </div>
@@ -158,7 +160,7 @@
       <h3>Teams – Grundnivå</h3>
       <p class="course-desc">Grunderna i Teams med fokus på tydlig och kvalitativ kommunikation i möten och chattar.</p>
       <div class="course-meta">
-        <span>⏱️ 3 timmar</span>
+        <span>⏱️ 2 tillfällen á 90 min</span>
         <span>👥 Max 10</span>
         <span>💰 800 kr exkl. moms</span>
       </div>
@@ -174,7 +176,7 @@
       <h3>Teams – Fortsättningskurs</h3>
       <p class="course-desc">Fördjupa dig i mötesstruktur, samarbetsytor och verktyg som lyfter din kommunikation.</p>
       <div class="course-meta">
-        <span>⏱️ 3 timmar</span>
+        <span>⏱️ 2 tillfällen á 90 min</span>
         <span>👥 Max 10</span>
         <span>💰 800 kr exkl. moms</span>
       </div>
@@ -190,7 +192,7 @@
       <h3>Teams – Avancerad nivå</h3>
       <p class="course-desc">Avancerade tekniker för dig som vill leda möten och kommunikation på expertnivå.</p>
       <div class="course-meta">
-        <span>⏱️ 3 timmar</span>
+        <span>⏱️ 2 tillfällen á 90 min</span>
         <span>👥 Max 10</span>
         <span>💰 800 kr exkl. moms</span>
       </div>
@@ -206,57 +208,34 @@
 <!-- ===== BOKNINGSMODAL ===== -->
 <div class="modal-overlay" id="bookingModal">
   <div class="modal">
-    <h2>Boka kurs</h2>
-    <p>Du bokar: <strong id="bookingCourseName">Excel – Grundnivå</strong></p>
+    <h2>Boka Excel – Grundnivå</h2>
+    <p><strong>Pilotomgång</strong> – första gången kursen ges!</p>
 
-    <form onsubmit="submitBooking(event)">
-      <div class="form-group">
-        <label for="datum">Välj datum</label>
-        <select id="datum" name="datum" required>
-          <option value="">Välj ett tillfälle...</option>
-          <option value="söndag 1 november" data-tid="14:00 - 17:00">Söndag 1 november 14:00 - 17:00</option>
-          <option value="söndag 22 november" data-tid="14:00 - 17:00">Söndag 22 november 14:00 - 17:00</option>
-          <option value="fredag 4 december" data-tid="16:00 - 19:00">Fredag 4 december 16:00 - 19:00</option>
-        </select>
-        <p id="spotsLeftForDate" class="spots-info"></p>
-      </div>
+    <div class="booking-info">
+      <p><strong>Kursen ges vid två tillfällen:</strong></p>
+      <ul>
+        <li>Del 1: 12 november 2026, 17:30–19:00</li>
+        <li>Del 2: 3 december 2026, 17:30–19:00</li>
+      </ul>
 
-      <div class="form-group">
-        <label for="namn">Namn</label>
-        <input type="text" id="namn" name="namn" required>
-      </div>
-      <div class="form-group">
-        <label for="foretag">Företag</label>
-        <input type="text" id="foretag" name="foretag" required>
-      </div>
-      <div class="form-group">
-        <label for="epost">E-post</label>
-        <input type="email" id="epost" name="epost" required>
-      </div>
-      <div class="form-group">
-        <label for="gatuadress">Gatuadress</label>
-        <input type="text" id="gatuadress" name="gatuadress" required>
-      </div>
-      <div class="form-group">
-        <label for="postnummer">Postnummer</label>
-        <input type="text" id="postnummer" name="postnummer" required>
-      </div>
-      <div class="form-group">
-        <label for="ort">Ort</label>
-        <input type="text" id="ort" name="ort" required>
-      </div>
+      <p class="booking-price">
+        <strong>Rabatterat pris:</strong> 640 kr exkl. moms<br>
+        <span class="price-old">Ordinarie pris: 800 kr</span>
+      </p>
 
-      <div class="modal-actions">
-        <button type="button" class="btn btn-secondary" onclick="closeBooking()">Avbryt</button>
-        <button type="submit" class="btn btn-primary">Skicka bokning</button>
-      </div>
+      <p class="booking-note">
+        Fakturan ska vara betald senast dagen före tillfälle 2 för att du ska få delta i den andra delen.
+      </p>
 
-      <div class="form-message" id="formMessage"></div>
-    </form>
+      <p class="booking-note">
+        Deltar du i enkäten efter kursen får du ytterligare 20 % rabatt på nästa kurs.
+      </p>
+    </div>
 
-    <p class="booking-help">
-      Hittar du ingen tid som passar? Inga problem, <a href="kontakt.html">kontakta mig</a> så hittar vi en lösning.
-    </p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary" onclick="closeBooking()">Avbryt</button>
+      <a href="https://forms.cloud.microsoft/e/WzLj4RTisv" target="_blank" rel="noopener" class="btn btn-primary">Gå till bokningsformuläret →</a>
+    </div>
   </div>
 </div>
 
